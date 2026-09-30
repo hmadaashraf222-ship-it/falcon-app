@@ -27,10 +27,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install flet fpdf2
 
+      - name: Create Flet project structure if missing
+        run: |
+          if [ ! -f "pubspec.yaml" ]; then
+            flet create . --project-name app_final || true
+          fi
+
       - name: Build Flet APK
         run: |
-          flutter pub get
-          flet build apk --module-name app_final
+          flet build apk --project-dir .
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
