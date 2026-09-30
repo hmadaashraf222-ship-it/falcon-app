@@ -29,9 +29,9 @@ jobs:
 
       - name: Create Flet Project and Build APK
         run: |
-          flet create falcon_app_dir
-          cp app_final.py falcon_app_dir/main.py
-          cd falcon_app_dir
+          flet create myapp
+          cp app_final.py myapp/src/main.py
+          cd myapp
           flutter pub get
           flet build apk
 
@@ -39,4 +39,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: app-release
-          path: falcon_app_dir/build/app/outputs/flutter-apk/app-release.apk
+          path: myapp/build/app/outputs/flutter-apk/app-release.apk
