@@ -27,7 +27,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install flet fpdf2
 
-      - name: Create Flet project structure if missing
+      - name: Prepare Flet Project Config
         run: |
           if [ ! -f "pubspec.yaml" ]; then
             flet create . --project-name app_final || true
