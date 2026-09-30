@@ -30,4 +30,4 @@ jobs:
       - name: Build Flet APK
         run: |
           flutter pub get
-          flet build apk
+          flet build apk app_final.py
