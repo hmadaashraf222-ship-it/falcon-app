@@ -27,8 +27,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install flet fpdf2
 
-      - name: Initialize Flet Project and Build APK
+      - name: Create Flet Project and Build APK
         run: |
-          flet create . --force
-          cp app_final.py main.py
+          flet create falcon_app_dir
+          cp app_final.py falcon_app_dir/main.py
+          cd falcon_app_dir
+          flutter pub get
           flet build apk
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release
+          path: falcon_app_dir/build/app/outputs/flutter-apk/app-release.apk
