@@ -27,7 +27,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install flet fpdf2
 
-      - name: Build Flet APK
+      - name: Initialize Flet Project and Build APK
         run: |
-          flutter pub get
-          flet build apk app_final.py
+          flet create . --force
+          cp app_final.py main.py
+          flet build apk
