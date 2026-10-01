@@ -29,13 +29,11 @@ jobs:
 
       - name: Initialize Flet Project and Build APK
         run: |
-          # إنشاء المشروع بالاسم الافتراضي الداعم لهيكل فليت
           flet create myapp
-          # استبدال الكود الافتراضي بكود مشروعك
           cp main.py myapp/src/main.py
-          # الانتقال للمجلد وبناء الـ APK
           cd myapp
-          flet build apk
+          # استخدام yes لتمرير الموافقة تلقائياً لأي سؤال تفاعلي
+          yes y | flet build apk
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
