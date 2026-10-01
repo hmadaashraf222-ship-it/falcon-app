@@ -32,7 +32,6 @@ jobs:
           flet create myapp
           cp main.py myapp/src/main.py
           cd myapp
-          # استخدام yes لتمرير الموافقة تلقائياً لأي سؤال تفاعلي
           yes y | flet build apk
 
       - name: Upload APK artifact
