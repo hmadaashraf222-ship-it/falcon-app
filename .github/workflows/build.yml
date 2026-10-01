@@ -27,21 +27,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install flet fpdf2 arabic-reshaper python-bidi
 
-      - name: Initialize Flet App and Build APK
+      - name: Build Flet APK Directly
         run: |
-          # إنشاء مشروع Flet رسمي جديد بالاسم المناسب
-          flet create falcon_project
-          
-          # نقل ملف الـ main.py الخاص بك إلى داخل مجلد المشروع المنشأ
-          cp main.py falcon_project/src/main.py
-          
-          # الدخول إلى مجلد المشروع وبناء الـ APK هناك لتجنب خطأ الـ root
-          cd falcon_project
           flutter pub get
-          flet build apk
+          flet pack main.py --name "FalconCenter"
+          flet build apk --project-dir .
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release
-          path: falcon_project/build/app/outputs/flutter-apk/app-release.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
